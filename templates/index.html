@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/2814/2814666.png">
+
+    <title>Churn Predictor</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+
+            background: linear-gradient(rgba(31, 31, 31, 0.8), rgba(31, 31, 31, 0.8)),
+                url('https://assets.mspimages.in/gear/wp-content/uploads/2023/03/OTT_NEW.jpg') center/cover fixed no-repeat;
+            color: #fff;
+            
+        }
+
+
+
+        header {
+            padding: 40px;
+            text-align: center;
+        }
+
+        img {
+            border-radius: 6%;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        #churn {
+            height: 300px;
+            border-radius: 5px;
+            display: block;
+            margin: auto;
+        }
+
+        main {
+            padding: 50px;
+            text-align: center;
+
+        }
+
+        .project-info {
+            position: relative;
+            top: -32px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .project-info p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        form {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 400px;
+            margin: 0 auto;
+            transition: transform 0.3s ease-in-out;
+            text-align: left;
+        }
+
+        form:hover {
+            transform: scale(1.05);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #666;
+            border-radius: 8px;
+            background-color: #555;
+            color: #fff;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Add this style to your existing CSS */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 16px 0;
+            z-index: 1000;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+            scroll-behavior: smooth;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            padding: 12px 16px;
+            border-radius: 5px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #92ff67;
+        }
+
+
+        /* Add this style to your existing CSS */
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #666;
+            border-radius: 8px;
+            background-color: #555;
+            color: #fff;
+        }
+
+        /* Adjust the following style if needed */
+        select:hover {
+            background-color: #666;
+        }
+
+        a {
+            color: white;
+            /* Change link color to white */
+            text-decoration: none;
+            /* Remove underline */
+            transition: color 0.3s ease-in-out;
+            /* Add smooth transition for color change */
+        }
+
+        a:hover {
+            color: #4caf50;
+            transform: scale(1.05);
+            /* Change color to light radiant green on hover */
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 100%;
+            border-radius: 50%;
+            max-width: 100px;
+            /* Adjust as needed */
+            margin-bottom: 10px;
+
+        }
+
+        .team-member h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .team-member p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="#home"><b>Home</b></a>
+        <a href="#predictor"><b>Predictor</b></a>
+        <a href="#help"><b>Help</b></a>
+        <a href="#about"><b>About Us</b></a>
+    </nav>
+
+    <main>
+
+        <div id="home">
+
+            <header>
+                <h1>OTT Customer Subscription Churn Prediction</h1><br>
+            </header>
+
+            <div class="project-info">
+
+                <img id="churn"
+                    src="https://cdn.analyticsvidhya.com/wp-content/uploads/2020/05/Churn-Prediction-scaled.jpg"><br>
+                <p>
+                    OTT (Over-The-Top) platforms are digital streaming services that deliver video content over the
+                    internet,
+                    bypassing traditional cable or satellite TV providers. Examples include Netflix, Hulu, and Disney+.
+                </p>
+
+                <p>Customer churn, in the context of these platforms, refers to the prediction of whether subscribers
+                    are
+                    likely to cancel their subscriptions.
+                    By analyzing factors like viewing habits and customer support interactions, these platforms aim to
+                    foresee potential churn and implement strategies to retain customers.
+                    Effectively managing churn is crucial for sustaining business growth and enhancing user satisfaction
+                    in
+                    the competitive landscape of online streaming services.</p>
+
+            </div>
+
+        </div>
+
+        <div id="predictor">
+
+            <br><br><br>
+            <hr><br>
+
+            <h2>Predictor:</h2>
+
+            <br><br>
+
+            <form action="/predict" method="post">
+
+                <label for="weekly_mins_watched">Weekly Minutes Watched:</label>
+
+                <input type="text" name="weekly_mins_watched" placeholder="Range: 0.00-530.00" min="0" max="530"
+                    step="1" required>
+
+                <label for="customer_support_calls">Customer Support Calls:</label>
+
+                <input type="text" name="customer_support_calls" placeholder="Range: 0-10" min="0" max="9" step="1"
+                    required><br>
+
+
+
+                <label for="multi_screen_yes">Multi Screen:</label>
+                <select name="multi_screen_yes" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+
+
+                <input type="submit" value="Predict">
+
+                
+            </form>
+
+            <br><br>
+
+        </div>
+
+
+        <div id="help">
+            <br>
+            <hr><br><br>
+            <div class="project-info">
+                <h2>How It Works: OTT Churn Prediction</h2>
+
+                <p>Our OTT Churn Prediction system utilizes cutting-edge data science methods to examine past customer
+                    data.
+                    We trained models based on thorough evaluations of different demographic characteristics, and the
+                    best
+                    model was the XG Boost algorithm, producing dependable forecasts with a respectable degree of
+                    accuracy.
+                </p>
+
+                <h2>The Prediction Tool's Use:</h2>
+                <p>Input client data into our user-friendly interface to determine if a customer is likely to leave. The
+                    main input fields and descriptions are listed below:</p>
+
+                <h3>1. Weekly Minutes Watched:</h3>
+                <p>Enter the customer's weekly average for the time spent watching material, facilitating the
+                    understanding
+                    of the user's platform interaction.( According to our data, ranges from 0 minutes to 530 minutes )
+                </p>
+
+                <h3>2. Customer Support Calls:</h3>
+                <p>Enter the total number of calls made to customer care, that can be helpful in assessing the user's level of happiness and
+                    identifying possible problems. ( According to our data, ranges from 0 to 9 calls )</p>
+
+                <h3>3. Multi-Screen:</h3>
+                <p>Whether the user is watching your OTT platform in multiple screens or not.</p>
+
+                <p>By providing these details, our predictive model processes the information through the trained XG
+                    Boost
+                    algorithm to predict whether the customer will churn or not. Based on the results you can enable 
+                    proactive measures to retain valuable customers if required.
+                </p>
+            </div>
+            <br>
+            <hr>
+            <div>
+
+
+                <div id="about" class="project-info">
+
+                    <br><br>
+                    <h1>About Us</h1><br>
+                    <p>We comprise a team of four members pursuing our final year in Computer Science and Engineering
+                        with a specialization in Artificial Intelligence
+                        at <a target="_blank" href="https://www.nrtec.in/"><u>Narasaraopeta Engineering College.</u></a>Our
+                        collective interest and expertise in the field of AI have been instrumental in collaboratively
+                        developing a substantial project for our final year. As a cohesive team, we have dedicated our
+                        efforts to deliver a noteworthy application,
+                        leveraging our skills and knowledge in artificial intelligence to contribute meaningfully to our
+                        academic journey.</p><br>
+
+                    <div class="team-grid">
+
+                        <div class="team-member">
+                            <img src="https://cdn-icons-png.flaticon.com/128/4202/4202831.png" alt="Team Member 1">
+                            <h3>Vavilala Satwik</h3>
+
+
+                        </div>
+                        <div class="team-member">
+                            <img src="https://cdn-icons-png.flaticon.com/128/4202/4202843.png" alt="Team Member 2">
+                            <h3>Kota S Rakesh</h3>
+
+                            <br>
+                        </div>
+                        <div class="team-member">
+                            <img src="https://cdn-icons-png.flaticon.com/128/4202/4202839.png" alt="Team Member 3">
+                            <h3>P Mahesh Babu</h3>
+
+                        </div>
+                        <div class="team-member">
+                            <img src="https://cdn-icons-png.flaticon.com/128/4202/4202835.png" alt="Team Member 4">
+                            <h3>P Rohith Reddy</h3>
+
+                        </div>
+                        <br>
+                    </div>
+
+                </div>
+
+    </main>
+
+
+</body>
+
+</html>
