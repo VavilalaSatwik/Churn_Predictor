@@ -36,7 +36,7 @@ def predict():
             user_data = pd.DataFrame({
                 'weekly_mins_watched': [wmw],
                 'customer_support_calls': [csc],
-                'multi_screen_yes_1': [msy]
+                'multi_screen_yes': [msy]
             })
 
             # Ensure that the column names in user_data match the expected_columns
