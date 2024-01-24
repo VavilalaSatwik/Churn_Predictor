@@ -32,7 +32,6 @@ def predict():
             if not isinstance(wmw, (int, float)) or not isinstance(csc, (int, float)):
                 raise ValueError("Weekly mins watched and customer support calls must be numeric.")
 
-
             # Prepare the input data as a DataFrame
             user_data = pd.DataFrame({
                 'weekly_mins_watched': [wmw],
