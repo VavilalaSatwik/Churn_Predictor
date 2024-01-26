@@ -26,10 +26,10 @@ def predict():
         # Get input from the form
         try:
             wmw = float(request.form['weekly_mins_watched'])
-            csc = float(request.form['customer_support_calls'])
+            csc = int(request.form['customer_support_calls'])
             msy = int(request.form['multi_screen_yes'])
             
-            if not isinstance(wmw, (int, float)) or not isinstance(csc, (int, float)):
+            if not isinstance(wmw, (int, float)) or not isinstance(csc, (int)):
                 raise ValueError("Weekly mins watched and customer support calls must be numeric.")
 
             # Prepare the input data as a DataFrame
